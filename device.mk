@@ -1,25 +1,29 @@
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-
 # Allow missing dependencies for initial build — some HAL modules
 # from the common tree aren't built yet (need vendor sources)
-ALLOW_MISSING_DEPENDENCIES := true
+ALLOW_MISSING_DEPENDENCIES := false
 
 # Inherit common device configuration
 $(call inherit-product, device/samsung/universal7904-common/universal7904-common.mk)
+$(call inherit-product, device/samsung/gta3xlwifi/lineage.mk)
 
 # Remove common tree packages that don't work on SM-T510
 # Samsung sensors impl doesn't work with our stub — use AOSP impl
 # Hardware gatekeeper needs TEE — use software gatekeeper
 # Fingerprint HAL — tablet has no fingerprint sensor
+# save this for later:     android.hardware.sensors@1.0-impl.samsung
 PRODUCT_PACKAGES_REMOVE += \
-    android.hardware.sensors@1.0-impl.samsung \
     android.hardware.gatekeeper@1.0-impl \
     android.hardware.gatekeeper@1.0-service \
     android.hardware.biometrics.fingerprint@2.3-service.samsung \
-    vendor.lineage.touch@1.0-service.samsung
+    vendor.lineage.touch@1.0-service.samsung \
+    vendor.lineage.touch@1.0-service 
 
-# Inherit vendor blobs
-$(call inherit-product, vendor/samsung/gta3xlwifi/gta3xlwifi-vendor.mk)
+# were gonna use common tree, u can use ur own if u want to
+# $(call inherit-product, vendor/samsung/gta3xlwifi/gta3xlwifi-vendor.mk)
+
+# no dynamic partitions 
+PRODUCT_USE_DYNAMIC_PARTITIONS := false
 
 # Bluetooth
 # NOTE: Do NOT include android.hardware.bluetooth.audio-impl — it installs an
@@ -31,7 +35,17 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.1-service \
     android.hardware.bluetooth.audio@2.1-impl \
     audio.bluetooth.default \
-    libbt-vendor
+    libbt-vendor \
+    android.hardware.health@2.0-service
+
+# USB
+PRODUCT_PACKAGES += \
+        android.hardware.usb-service.samsung 
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.radio.noril=no
+
+PRODUCT_USE_TELEPHONY := false
 
 PRODUCT_COPY_FILES += \
     hardware/samsung_slsi/libbt/conf/bt_did.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_did.conf \
@@ -46,7 +60,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     fstab.exynos7904 \
     fstab.ramdisk
-
 
 # Sensors — use AOSP default impl (not Samsung) + stub HAL module
 PRODUCT_PACKAGES += \
@@ -71,6 +84,7 @@ PRODUCT_EXTRA_VNDK_VERSIONS += 32
 PRODUCT_PACKAGES += \
     libutils-v32
 
+
 # Empty sensors multihal config (no sub-HALs, our stub provides zero sensors)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
@@ -83,9 +97,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.usb.config=adb
 
-# ADB authorization — re-enable for release builds
-# WITH_ADB_INSECURE := true
-
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += $(LOCAL_PATH)
 
@@ -94,10 +105,24 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     wpa_supplicant \
     hostapd \
-    WifiOverlay \
+    WifiOverlay #\
     wlbtd
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
+    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf 
+
+# camera stuff from wisdom device tree
+PRODUCT_PACKAGES := $(filter-out \
+    android.hardware.camera.provider@2.4-legacy \
+    android.hardware.camera.provider@2.5-legacy \
+    camera.device@1.0-impl \
+    camera.device@3.2-impl \
+    camera.device@3.3-impl \
+    camera.device@3.4-impl \
+    camera.device@3.5-impl, \
+    $(PRODUCT_PACKAGES))
+
+
+

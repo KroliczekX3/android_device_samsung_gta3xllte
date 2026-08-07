@@ -12,7 +12,7 @@ import os
 def FullOTA_InstallEnd(info):
     # Flash boot.img to recovery partition (Samsung loads ramdisk from here)
     info.script.AppendExtra(
-        'package_extract_file("boot.img", '
+        'package_extract_file("recovery.img", '
         '"/dev/block/platform/13500000.dwmmc0/by-name/recovery");')
 
     # Include and flash stock DTBO
