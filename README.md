@@ -4,6 +4,7 @@ This device tree is for SM-T510 and (unsupported but boots) SM-T515
 
 |Bugs| Reason |
 |--|--|
+| NFC | idk if i can fix |
 | Camera | needs some libs from vendor (soon) |
 | USB OTG | needs some libs from vendor (soon) |
 
