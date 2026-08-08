@@ -29,8 +29,8 @@ https://github.com/LineageOS/android_hardware_samsung_nfc
 ## Trees to clone:  
 this device tree obviously  
 https://github.com/Alerk09/android_device_samsung_universal7904-common  
-https://github.com/Alerk09/android_kernel_samsung_universal7904 
-https://github.com/Alerk09/android_vendor_samsung_universal7904
+https://github.com/Alerk09/android_kernel_samsung_universal7904  
+https://github.com/Alerk09/android_vendor_samsung_universal7904-common
 
 ## Credits
 [xuanyayi](https://github.com/xuanyayi) for some fixes i took from his device tree for wisdom
