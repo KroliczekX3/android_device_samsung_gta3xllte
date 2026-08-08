@@ -1,6 +1,6 @@
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-# Allow missing dependencies for initial build — some HAL modules
-# from the common tree aren't built yet (need vendor sources)
+
+# dont set this to true unless you know what youre doing
 ALLOW_MISSING_DEPENDENCIES := false
 
 # Inherit common device configuration
