@@ -14,9 +14,7 @@ do NOT expect this tree to be updated for newer versions of LineageOS, i'm curre
 ## Stuff to clone:   
 https://github.com/LineageOS/android_hardware_samsung_slsi-linaro_config  
 https://github.com/LineageOS/android_hardware_samsung_slsi-linaro_exynos  
-https://github.com/LineageOS/android_hardware_samsung_slsi-linaro_exynos5  
-https://github.com/LineageOS/android_hardware_samsung_slsi-linaro_exynos  
-https://github.com/LineageOS/android_hardware_samsung_slsi-linaro_exynos5  
+https://github.com/LineageOS/android_hardware_samsung_slsi-linaro_exynos5    
 https://github.com/LineageOS/android_hardware_samsung_slsi-linaro_graphics  
 https://github.com/LineageOS/android_hardware_samsung_slsi-linaro_openmax  
 https://github.com/LineageOS/android_hardware_samsung  
