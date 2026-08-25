@@ -117,7 +117,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	vendor.samsung.hardware.camera.provider@4.0 \
 	vendor.samsung.hardware.camera.provider@4.0-legacy \
-	vevndor.samsung.hardware.camera.provider@4.0-service \
+	vendor.samsung.hardware.camera.provider@4.0-service \
 	vendor.samsung.hardware.camera.device@5.0 \
 	vendor.samsung.hardware.camera.device@5.0-impl 
 
