@@ -11,7 +11,6 @@ $(call inherit-product, device/samsung/gta3xlwifi/lineage.mk)
 # Samsung sensors impl doesn't work with our stub — use AOSP impl
 # Hardware gatekeeper needs TEE — use software gatekeeper
 # Fingerprint HAL — tablet has no fingerprint sensor
-# save this for later:     android.hardware.sensors@1.0-impl.samsung
 PRODUCT_PACKAGES_REMOVE += \
     android.hardware.gatekeeper@1.0-impl \
     android.hardware.gatekeeper@1.0-service \
@@ -40,7 +39,8 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-        android.hardware.usb-service.samsung 
+        android.hardware.usb-service.samsung \
+	android.hardware.usb@1.1-service.exynos7885
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.radio.noril=no
@@ -105,7 +105,7 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     wpa_supplicant \
     hostapd \
-    WifiOverlay #\
+    WifiOverlay \
     wlbtd
 
 PRODUCT_COPY_FILES += \
@@ -113,16 +113,22 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf 
 
+# camera
+PRODUCT_PACKAGES += \
+	vendor.samsung.hardware.camera.provider@4.0 \
+	vendor.samsung.hardware.camera.provider@4.0-legacy \
+	vevndor.samsung.hardware.camera.provider@4.0-service \
+	vendor.samsung.hardware.camera.device@5.0 \
+	vendor.samsung.hardware.camera.device@5.0-impl 
+
 # camera stuff from wisdom device tree
-PRODUCT_PACKAGES := $(filter-out \
+PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-legacy \
     android.hardware.camera.provider@2.5-legacy \
     camera.device@1.0-impl \
     camera.device@3.2-impl \
     camera.device@3.3-impl \
     camera.device@3.4-impl \
-    camera.device@3.5-impl, \
-    $(PRODUCT_PACKAGES))
-
+    camera.device@3.5-impl
 
 
