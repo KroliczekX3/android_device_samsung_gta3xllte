@@ -1,12 +1,12 @@
-# LineageOS 20 device tree for SM-T510 and SM-T515
+# crDroid 9 device tree for SM-T515 ported from SM-T510
 
-This device tree is for SM-T510 and (unsupported but boots) SM-T515  
+This device tree is for SM-T515
 
 |Bugs| Reason |
 |--|--|
-| NFC | idk if i can fix |
-| Camera | needs some libs from vendor (soon) |
-| USB OTG | needs some libs from vendor (soon) |
+| NFC | idk if can fix |
+| Camera | needs some libs from vendor |
+| USB OTG | needs some libs from vendor |
 
 Even with those bugs, its still daily-drivable and stable  
 do NOT expect this tree to be updated for newer versions of LineageOS, i'm currently trying to get this to run smoothly and bugless.
