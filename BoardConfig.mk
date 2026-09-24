@@ -1,4 +1,19 @@
-DEVICE_PATH := device/samsung/gta3xlwifi
+DEVICE_PATH := device/samsung/gta3xllte
+
+# Architecture - ARM64
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 := 
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := cortex-a73
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a53
 
 # Inherit common board flags FIRST, then override
 include device/samsung/universal7904-common/BoardConfigCommon.mk
@@ -11,7 +26,7 @@ TARGET_SCREEN_DENSITY := 240
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.force_normal_boot=1
-TARGET_KERNEL_CONFIG := gta3xlwifi_defconfig
+TARGET_KERNEL_CONFIG := gta3xllte_defconfig
 BOARD_USES_RECOVERY_AS_BOOT := false
 # from wisdom device tree, works good af
 BOARD_MKBOOTIMG_ARGS += --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --second_offset 0x00f00000 --tags_offset 0x00000100 --header_version 1 --board SRPSA16A009RU --os_version 12.0.0 --os_patch_level 2099-12
@@ -38,7 +53,7 @@ BOARD_INCLUDE_RECOVERY_DTBO := true
 # Flash boot.img to recovery during OTA install. bullshit but ok, avg vibecoding
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
-# Fingerprint — SM-T510 has no fingerprint sensor
+# Fingerprint — SM-T515 has no fingerprint sensor
 TARGET_HAS_NO_FINGERPRINT := true
 
 # Sepolicy
@@ -51,4 +66,3 @@ VENDOR_SECURITY_PATCH := 2023-02-01
 # we're gonna use prebuilt dtbo
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/dtbo_prebuilt.img
 BOARD_PREBUILT_RECOVERY_DTBOIMAGE := $(DEVICE_PATH)/dtbo_prebuilt.img
-
