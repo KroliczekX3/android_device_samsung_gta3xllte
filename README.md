@@ -8,8 +8,7 @@ This device tree is for SM-T515
 | Camera | needs some libs from vendor |
 | USB OTG | needs some libs from vendor |
 
-Even with those bugs, its still daily-drivable and stable  
-do NOT expect this tree to be updated for newer versions of LineageOS, i'm currently trying to get this to run smoothly and bugless.
+Even with those bugs, its still daily-drivable and stable.
 
 ## Stuff to clone:   
 https://github.com/LineageOS/android_hardware_samsung_slsi-linaro_config  
