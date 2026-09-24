@@ -1,6 +1,6 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_gta3xlwifi.mk
+    $(LOCAL_DIR)/crdroid_gta3xllte.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_gta3xlwifi-userdebug \
-    lineage_gta3xlwifi-eng
+    crdroid_gta3xllte-userdebug \
+    crdroid_gta3xllte-eng
